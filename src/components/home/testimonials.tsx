@@ -9,34 +9,37 @@ type Testimonial = {
   name: string;
   role?: string;
   quote: string;
-  photo?: { asset: { _ref: string } } | null;
+  photo?: { asset: { _ref: string } } | string | null;
 };
 
-// TODO: replace with real member testimonials via Sanity Studio (/studio -> Testimonial).
+// Demo quotes (clearly not real — swap for genuine member testimonials via
+// Sanity Studio at /studio -> Testimonial). Photos are real members captured
+// mid-testimony/mic-in-hand, per the client's note that testimonial photos
+// specifically should show a member holding a microphone.
 const fallbackTestimonials: Testimonial[] = [
   {
     _id: "1",
     name: "A Member's Story",
-    role: "Placeholder testimonial",
+    role: "Demo testimonial — replace with a real one",
     quote:
-      "Since joining NPGC, I've experienced real growth in my walk with God. This is a placeholder — replace with a genuine member testimonial in Sanity Studio.",
-    photo: null,
+      "Since joining NPGC, I've experienced real growth in my walk with God. (Demo text — replace with a genuine member testimonial in Sanity Studio.)",
+    photo: "/images/gallery/congregation/img-8746-20251012.jpg",
   },
   {
     _id: "2",
     name: "A Member's Story",
-    role: "Placeholder testimonial",
+    role: "Demo testimonial — replace with a real one",
     quote:
-      "The teaching here is practical and Spirit-led. This is a placeholder — replace with a genuine member testimonial in Sanity Studio.",
-    photo: null,
+      "The teaching here is practical and Spirit-led. (Demo text — replace with a genuine member testimonial in Sanity Studio.)",
+    photo: "/images/gallery/congregation/img-8747-20251012.jpg",
   },
   {
     _id: "3",
     name: "A Member's Story",
-    role: "Placeholder testimonial",
+    role: "Demo testimonial — replace with a real one",
     quote:
-      "I found a family here, not just a church service. This is a placeholder — replace with a genuine member testimonial in Sanity Studio.",
-    photo: null,
+      "I found a family here, not just a church service. (Demo text — replace with a genuine member testimonial in Sanity Studio.)",
+    photo: "/images/gallery/congregation/img-8746-20251012.jpg",
   },
 ];
 
@@ -73,7 +76,11 @@ export async function Testimonials() {
                 <div className="relative h-10 w-10 overflow-hidden rounded-full bg-secondary">
                   {t.photo && (
                     <Image
-                      src={urlForImage(t.photo as never).width(80).height(80).url()}
+                      src={
+                        typeof t.photo === "string"
+                          ? t.photo
+                          : urlForImage(t.photo as never).width(80).height(80).url()
+                      }
                       alt={t.name}
                       fill
                       className="object-cover"

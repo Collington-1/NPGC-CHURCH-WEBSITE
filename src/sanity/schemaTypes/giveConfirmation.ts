@@ -26,6 +26,16 @@ export const giveConfirmation = defineType({
     defineField({ name: "reference", type: "string" }),
     defineField({ name: "message", type: "text" }),
     defineField({ name: "submittedAt", type: "datetime" }),
+    defineField({
+      name: "method",
+      type: "string",
+      options: { list: ["Bank Transfer", "Card"] },
+      initialValue: "Bank Transfer",
+    }),
+    defineField({ name: "currency", type: "string" }),
+    defineField({ name: "flwTransactionId", type: "string" }),
+    defineField({ name: "flwTxRef", type: "string" }),
+    defineField({ name: "verified", type: "boolean", initialValue: false }),
   ],
   preview: {
     select: { title: "fullName", subtitle: "purpose" },

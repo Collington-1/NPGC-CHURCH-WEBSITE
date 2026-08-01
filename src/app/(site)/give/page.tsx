@@ -4,6 +4,7 @@ import { HandCoins, Gift, Building2, Globe2, Sprout, Landmark } from "lucide-rea
 import { PageHero } from "@/components/layout/page-hero";
 import { BankDetailsCard } from "@/components/give/bank-details-card";
 import { GiveForm } from "@/components/forms/give-form";
+import { CardGiveForm } from "@/components/forms/card-give-form";
 
 export const metadata: Metadata = {
   title: "Give",
@@ -49,6 +50,31 @@ export default function GivePage() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-background py-20 sm:py-28">
+        <div className="mx-auto max-w-2xl px-6">
+          <p className="text-center text-sm font-semibold uppercase tracking-[0.3em] text-gold-500">
+            Give Instantly
+          </p>
+          <h2 className="mt-4 text-center font-display text-3xl font-bold text-foreground">
+            Give by Card
+          </h2>
+          <p className="mt-4 text-center text-sm leading-relaxed text-muted-foreground">
+            Give securely in Naira, Dollars, Pounds, or Euros using your debit
+            or credit card.
+          </p>
+          <div className="mt-10 rounded-2xl border border-border/60 bg-card p-8">
+            {process.env.NEXT_PUBLIC_FLUTTERWAVE_PUBLIC_KEY ? (
+              <CardGiveForm publicKey={process.env.NEXT_PUBLIC_FLUTTERWAVE_PUBLIC_KEY} />
+            ) : (
+              <p className="text-center text-sm text-muted-foreground">
+                Card giving is being set up. In the meantime, please use the
+                bank transfer details below.
+              </p>
+            )}
           </div>
         </div>
       </section>

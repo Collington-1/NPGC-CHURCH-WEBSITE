@@ -79,6 +79,11 @@ for (const file of allFiles) {
   const ext = path.extname(file).toLowerCase();
   if (!IMAGE_EXT.has(ext)) continue;
   if (/logo/i.test(basename) || /channels4_profile/i.test(basename)) continue;
+  // This specific file is a desktop browser-tabs screenshot that ended up in
+  // the photo folder by accident, not real church photography. Excluded by
+  // exact name (not a "WhatsApp Image ..." prefix rule) since that naming
+  // pattern is also used by genuine photos shared via WhatsApp.
+  if (basename === "WhatsApp Image 2025-11-03 at 12.22.53_b0067cf7.jpg") continue;
   if (seenBasenames.has(basename)) continue; // dedupe (same photo saved in two folders)
   seenBasenames.add(basename);
 

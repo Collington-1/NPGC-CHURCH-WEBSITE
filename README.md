@@ -42,6 +42,29 @@ the Studio need a real project:
 
 Content types are defined in `src/sanity/schemaTypes/`.
 
+**In plain terms:** Sanity Studio (`/studio`) is what replaces the WordPress
+admin dashboard. There's no code involved — the media team logs in, picks
+"Gallery Image" or "Sermon," drags in a photo or pastes a YouTube link, and
+clicks Publish. It shows up on the live site right away.
+
+## Setting up card giving (Flutterwave)
+
+The bank transfer + confirmation form works with no setup. To also accept
+debit/credit cards in Naira, Dollars, Pounds, and Euros on the Give page:
+
+1. Create a free account at [dashboard.flutterwave.com](https://dashboard.flutterwave.com).
+2. Go to Settings → API Keys. Start with the **Test** public/secret keys to try
+   the flow safely; switch to **Live** keys (after Flutterwave verifies your
+   business/KYC details) when you're ready to accept real payments.
+3. Add to `.env.local`:
+   - `NEXT_PUBLIC_FLUTTERWAVE_PUBLIC_KEY`
+   - `FLUTTERWAVE_SECRET_KEY`
+4. Restart `npm run dev`. The card form appears automatically on `/give` once
+   the public key is set (it stays hidden with a "coming soon" message
+   otherwise). Every card payment is verified server-side against
+   Flutterwave's API (`src/app/api/give/verify/route.ts`) before being
+   recorded — the client-side "successful" response is never trusted alone.
+
 ## Adding more photos
 
 Real church photography lives one level up, in the `NPGC WEBSITE` folder
@@ -65,18 +88,17 @@ larger of the two currently in the source folder) and copied to
 
 ## Content still needed from the client
 
-These are placeholders in the code right now — search for them or check
-`src/lib/site-config.ts`:
-
-- [ ] Real phone number (currently `+234 000 000 0000`)
-- [ ] Confirmed public contact email
-- [ ] Real Facebook / YouTube / Instagram URLs
-- [ ] Service times (Sunday service, Bible study, prayer meeting, vigil — day + time each)
+- [x] Phone / WhatsApp, Facebook, Instagram, service times, bank details — done
+- [ ] Confirmed public contact email (still a placeholder in `src/lib/site-config.ts`)
+- [ ] Real YouTube channel URL
 - [ ] Full church history, Vision, Mission, Core Values, Statement of Faith (`aboutContent` in Studio)
 - [ ] Leadership team bios + photos beyond Pastor Victor Eforuoku
-- [ ] Giving bank details (account name/number per category) and optional QR code
-- [ ] Real testimonials (currently placeholder quotes marked as such in the UI)
+- [ ] Optional: a QR code image for the bank/giving accounts
+- [ ] Real testimonials — currently demo quotes (clearly marked in the UI) paired
+      with real photos of members holding a microphone; swap the quotes for
+      genuine ones in Sanity Studio whenever they're ready
 - [ ] Arkville & Discipleship FAQ content
+- [ ] Flutterwave account (see "Setting up card giving" above) to activate card payments
 
 ## Deployment
 
@@ -86,10 +108,30 @@ These are placeholders in the code right now — search for them or check
 repo in Netlify, set the same environment variables from `.env.local` in
 Site settings → Environment variables, and deploy.
 
+### Connecting the Namecheap domain to Netlify
+
+The domain and hosting are on Namecheap (renewed January 2026, expires
+17 January 2027) — the WordPress hosting there gets retired once this site is
+live, but **keep the domain registration on Namecheap** and just repoint its
+DNS to Netlify:
+
+1. In Netlify: Site settings → Domain management → Add a domain → enter the
+   Namecheap domain.
+2. Netlify will show either a set of DNS records to add, or its own
+   nameservers to switch to. Using Netlify DNS (its nameservers) is simplest
+   and gives automatic HTTPS.
+3. In Namecheap: Domain List → Manage → Nameservers → Custom DNS → paste the
+   Netlify nameservers Netlify gave you in step 2.
+4. DNS changes can take a few hours to propagate. Netlify auto-provisions a
+   free HTTPS certificate once it detects the domain pointing to it.
+5. Until the domain is switched, the old WordPress site keeps serving — so
+   there's no downtime risk in doing this at your own pace.
+
 ### Vercel (alternative)
 
 No config needed — `vercel` auto-detects Next.js. Set the same environment
-variables in the Vercel project settings.
+variables in the Vercel project settings. Domain connection works the same
+way (point Namecheap DNS at Vercel instead).
 
 ## Project structure
 

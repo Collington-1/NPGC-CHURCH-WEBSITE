@@ -329,10 +329,6 @@ export const galleryImages: GalleryImage[] = [
   {
     "src": "/images/gallery/congregation/p1098335-20251012.jpg",
     "category": "congregation"
-  },
-  {
-    "src": "/images/gallery/congregation/whatsapp-image-2025-11-03-at-12-22-53-b0067cf7.jpg",
-    "category": "congregation"
   }
 ];
 

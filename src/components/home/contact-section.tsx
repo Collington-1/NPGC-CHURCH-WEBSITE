@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 
 import { siteConfig } from "@/lib/site-config";
 import { ContactForm } from "@/components/forms/contact-form";
@@ -51,9 +51,24 @@ export function ContactSection() {
               <div className="flex gap-3">
                 <Clock className="h-5 w-5 shrink-0 text-gold-500" />
                 <p className="text-sm text-muted-foreground">
-                  Service times — to be confirmed
+                  {siteConfig.serviceTimes.map((s) => (
+                    <span key={s.label} className="block">
+                      {s.label}: {s.time}
+                    </span>
+                  ))}
                 </p>
               </div>
+              <a
+                href={`https://wa.me/${siteConfig.whatsapp.replace(/[^\d]/g, "")}`}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="flex gap-3 transition-colors hover:text-foreground"
+              >
+                <MessageCircle className="h-5 w-5 shrink-0 text-gold-500" />
+                <span className="text-sm text-muted-foreground">
+                  Chat with us on WhatsApp
+                </span>
+              </a>
             </div>
           </div>
 

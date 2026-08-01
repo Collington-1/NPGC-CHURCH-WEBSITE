@@ -3,20 +3,25 @@ export const siteConfig = {
   shortName: "NPGC",
   tagline: "Your place for a shift.",
   url: "https://npgc.org",
-  // TODO: confirm exact phone number, email inbox, and social handles with the client.
+  // TODO: confirm a public contact email and YouTube channel URL with the client.
   address: {
     line1: "Plot 336A Peter Odili Road, Trans-Amadi",
     line2: "God'swill Towers, beside Livichun Supermarket",
     city: "Port Harcourt, Rivers State, Nigeria",
   },
-  phone: "+234 000 000 0000",
+  phone: "+234 803 626 6003",
+  whatsapp: "+2348036266003",
   email: "info@npgc.org",
   mapsUrl: "https://maps.google.com/?q=Plot+336A+Peter+Odili+Road+Trans-Amadi+Port+Harcourt",
   social: {
-    facebook: "https://facebook.com/npgchurch",
+    facebook: "https://www.facebook.com/thenpgc?mibextid=ZbWKwL",
     youtube: "https://youtube.com/@npgchurch",
-    instagram: "https://instagram.com/npgchurch",
+    instagram: "https://www.instagram.com/the_npgc?igsh=MXIwNmt2ZmxheDVsdQ==",
   },
+  serviceTimes: [
+    { label: "Sunday Service", time: "9:00 AM – 12:00 PM" },
+    { label: "Tuesday Service", time: "5:30 PM – 8:00 PM" },
+  ],
 } as const;
 
 export type NavLink = {

@@ -22,6 +22,32 @@ export const givingPurposes = [
   "Special Seed",
 ] as const;
 
+export const givingCurrencies = ["NGN", "USD", "GBP", "EUR"] as const;
+
+export const cardGiveSchema = z.object({
+  fullName: z.string().min(2, "Please enter your full name"),
+  email: z.string().email("Enter a valid email address"),
+  phone: z.string().min(7, "Enter a valid phone number"),
+  amount: z
+    .string()
+    .min(1, "Enter the amount you'd like to give")
+    .refine((v) => Number(v) > 0, "Enter an amount greater than zero"),
+  currency: z.enum(givingCurrencies),
+  purpose: z.enum(givingPurposes),
+});
+export type CardGiveValues = z.infer<typeof cardGiveSchema>;
+
+export const cardGiveVerifySchema = z.object({
+  transaction_id: z.string().min(1),
+  tx_ref: z.string().min(1),
+  fullName: z.string().min(2),
+  email: z.string().email(),
+  phone: z.string().min(7),
+  amount: z.coerce.number().positive(),
+  currency: z.enum(givingCurrencies),
+  purpose: z.enum(givingPurposes),
+});
+
 export const giveConfirmationSchema = z.object({
   fullName: z.string().min(2, "Please enter your full name"),
   email: z.string().email("Enter a valid email address"),
