@@ -28,12 +28,11 @@ export const fallbackAboutContent: AboutContent = {
   // Light" confession, used in place of a traditional doctrinal statement.
   statementOfFaith:
     "Christ is my Light and my Salvation.\nI blaze through darkness, systems, and limitations.\nI'm unstoppable!\nI'm well positioned; visible for the world to see.\nI cannot be ignored, overlooked, nor sidelined.\nEverywhere I enter, I shine, I glow, I radiate.\n2026, let there be LIGHT.\nHallelujah.",
-  // TODO: the client hasn't confirmed a founding year or specific historical
-  // milestones yet, so these entries intentionally use eras instead of
-  // invented dates. Replace with real years once confirmed (About Page
-  // Content -> timeline, in Sanity Studio at /studio).
+  // TODO: only the founding year is confirmed so far — the years in between
+  // are still open. Add real milestone years via Sanity Studio (/studio ->
+  // About Page Content -> timeline) whenever the client shares them.
   timeline: [
-    { year: "The Beginning", event: "NPGC was planted in Trans-Amadi, Port Harcourt, as a company of believers gathered around the Word, prayer, and the pursuit of God's presence, under the leadership of Pastor Victor Eforuoku." },
+    { year: "2020", event: "The New Paradigm Global Church was founded in Trans-Amadi, Port Harcourt, as a company of believers gathered around the Word, prayer, and the pursuit of God's presence, under the leadership of Pastor Victor Eforuoku." },
     { year: "Raising Disciples", event: "As the church grew, Arkville and Discipleship were established to walk believers — young and old — from their first encounter with God into lasting spiritual maturity." },
     { year: "2026", event: "NPGC steps into a new season with the declaration \"2026, Let There Be Light\" — believing God for greater visibility, breakthrough, and shift in every sphere of life." },
   ],
@@ -48,9 +47,6 @@ export type StaffMemberFallback = {
   isLeadPastor?: boolean;
 };
 
-// TODO: the Pastor's wife has photos in the gallery but her name hasn't been
-// confirmed yet, so she isn't added as a Leadership card below to avoid
-// publishing an unnamed entry for a real person. Add her here once confirmed.
 export const fallbackStaff: StaffMemberFallback[] = [
   {
     _id: "pastor-victor",
@@ -59,5 +55,12 @@ export const fallbackStaff: StaffMemberFallback[] = [
     bio: "Pastor Victor Eforuoku is the Founder and Lead Pastor of The New Paradigm Global Church (NPGC), a prophetic teaching ministry dedicated to raising influential people for global impact. He oversees a vibrant community of believers focused on spiritual growth, prayer, and the transformation of lives by the Word of God.",
     photo: "/images/gallery/pastor/img-6415-scaled.jpg",
     isLeadPastor: true,
+  },
+  {
+    _id: "pastor-nonye",
+    name: "Pastor Nonye Eforuoku",
+    role: "Pastor",
+    bio: "Pastor Nonye Eforuoku serves alongside Pastor Victor Eforuoku in shepherding The New Paradigm Global Church, ministering the Word and providing pastoral care and support across the church community.",
+    photo: "/images/gallery/pastors-wife/13-7img-5961-scaled.jpg",
   },
 ];

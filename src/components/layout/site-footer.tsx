@@ -63,6 +63,14 @@ export function SiteFooter() {
                   Give
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/resources"
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Resources
+                </Link>
+              </li>
             </ul>
           </div>
 

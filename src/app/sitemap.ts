@@ -11,6 +11,7 @@ const routes = [
   "/activities/discipleship",
   "/gallery",
   "/give",
+  "/resources",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

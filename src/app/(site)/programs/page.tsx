@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { fallbackPrograms, type ProgramFallback } from "@/lib/programs-data";
 import { ProgramCard } from "@/components/programs/program-card";
+import { UpcomingProgramBanner } from "@/components/programs/upcoming-program-banner";
 import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
@@ -31,6 +32,8 @@ export default async function ProgramsPage() {
         description="From Sunday gatherings to seasons of prayer and impact — find your rhythm with us."
         image="/images/gallery/worship/13-7img-5186-2.jpg"
       />
+
+      <UpcomingProgramBanner />
 
       <section className="bg-background py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-6">

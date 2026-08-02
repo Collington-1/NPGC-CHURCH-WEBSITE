@@ -14,6 +14,14 @@ import { newsletterSubmission } from "./newsletterSubmission";
 import { giveConfirmation } from "./giveConfirmation";
 import { arkvilleRegistration } from "./arkvilleRegistration";
 import { discipleshipRegistration } from "./discipleshipRegistration";
+import { liveStatus } from "./liveStatus";
+import { youtubeShort } from "./youtubeShort";
+import { upcomingEvent } from "./upcomingEvent";
+import { eventRegistration } from "./eventRegistration";
+import { ministrationVideo } from "./ministrationVideo";
+import { audioMinistration } from "./audioMinistration";
+import { pastorBook } from "./pastorBook";
+import { libraryDocument } from "./libraryDocument";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -26,10 +34,18 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     galleryImage,
     faq,
     aboutContent,
+    liveStatus,
+    youtubeShort,
+    upcomingEvent,
+    ministrationVideo,
+    audioMinistration,
+    pastorBook,
+    libraryDocument,
     contactSubmission,
     newsletterSubmission,
     giveConfirmation,
     arkvilleRegistration,
     discipleshipRegistration,
+    eventRegistration,
   ],
 };

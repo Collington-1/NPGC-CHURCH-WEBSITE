@@ -5,7 +5,7 @@ export const siteConfig = {
   // TODO: replace with the real Namecheap domain once confirmed — used for
   // sitemap.xml, canonical URLs, and Open Graph/Twitter share previews.
   url: "https://npgc.org",
-  // TODO: confirm a public contact email and YouTube channel URL with the client.
+  // TODO: confirm a public contact email with the client.
   address: {
     line1: "Plot 336A Peter Odili Road, Trans-Amadi",
     line2: "God'swill Towers, beside Livichun Supermarket",
@@ -17,9 +17,12 @@ export const siteConfig = {
   mapsUrl: "https://maps.google.com/?q=Plot+336A+Peter+Odili+Road+Trans-Amadi+Port+Harcourt",
   social: {
     facebook: "https://www.facebook.com/thenpgc?mibextid=ZbWKwL",
-    youtube: "https://youtube.com/@npgchurch",
+    youtube: "https://youtube.com/@thenpgc?si=Uq5DjHpBNo7UbKTU",
     instagram: "https://www.instagram.com/the_npgc?igsh=MXIwNmt2ZmxheDVsdQ==",
   },
+  // YouTube's own shortcut that redirects to whatever is currently live on
+  // the channel, or the channel's live tab if nothing is live right now.
+  youtubeLive: "https://www.youtube.com/@thenpgc/live",
   serviceTimes: [
     { label: "Sunday Service", time: "9:00 AM – 12:00 PM" },
     { label: "Tuesday Service", time: "5:30 PM – 8:00 PM" },

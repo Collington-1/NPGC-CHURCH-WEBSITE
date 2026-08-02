@@ -85,3 +85,12 @@ export const discipleshipRegistrationSchema = z.object({
 export type DiscipleshipRegistrationValues = z.infer<
   typeof discipleshipRegistrationSchema
 >;
+
+export const eventRegistrationSchema = z.object({
+  eventId: z.string().min(1),
+  fullName: z.string().min(2, "Please enter your full name"),
+  email: z.string().email("Enter a valid email address"),
+  phone: z.string().min(7, "Enter a valid phone number"),
+  message: z.string().optional(),
+});
+export type EventRegistrationValues = z.infer<typeof eventRegistrationSchema>;
