@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "Discipleship",
   description:
     "NPGC's Discipleship track helps believers grow into spiritual maturity through structured stages of teaching and mentorship.",
+  alternates: { canonical: "/activities/discipleship" },
 };
 
 const benefits = [

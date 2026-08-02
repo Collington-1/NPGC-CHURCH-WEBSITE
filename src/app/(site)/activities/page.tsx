@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Activities",
   description:
     "Explore Arkville, our children's Bible school, and Discipleship, our growth track for believers at NPGC.",
+  alternates: { canonical: "/activities" },
 };
 
 const activities = [

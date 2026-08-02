@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Give",
   description:
     "Give your tithes, offerings, and seeds to The New Paradigm Global Church — securely and cheerfully.",
+  alternates: { canonical: "/give" },
 };
 
 const categories = [

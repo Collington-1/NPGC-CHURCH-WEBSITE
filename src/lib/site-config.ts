@@ -2,6 +2,8 @@ export const siteConfig = {
   name: "The New Paradigm Global Church",
   shortName: "NPGC",
   tagline: "Your place for a shift.",
+  // TODO: replace with the real Namecheap domain once confirmed — used for
+  // sitemap.xml, canonical URLs, and Open Graph/Twitter share previews.
   url: "https://npgc.org",
   // TODO: confirm a public contact email and YouTube channel URL with the client.
   address: {

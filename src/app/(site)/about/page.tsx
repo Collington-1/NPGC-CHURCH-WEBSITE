@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   title: "About Us",
   description:
     "Learn about The New Paradigm Global Church (NPGC) — our story, vision, mission, core values, statement of faith, and leadership.",
+  alternates: { canonical: "/about" },
 };
 
 const valueIcons = [Flame, HandHeart, Rocket, Users, BookOpen];

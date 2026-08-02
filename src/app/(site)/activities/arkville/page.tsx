@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "Arkville — Children's Bible School",
   description:
     "Arkville is NPGC's children's Bible school — a safe, fun, and Word-filled space for kids to grow in God.",
+  alternates: { canonical: "/activities/arkville" },
 };
 
 const whyJoin = [

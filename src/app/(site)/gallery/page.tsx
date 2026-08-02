@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Gallery",
   description:
     "Browse photos from NPGC — Sunday services, worship, prayer, special events, and church life.",
+  alternates: { canonical: "/gallery" },
 };
 
 const query = `*[_type == "galleryImage"] | order(order asc){

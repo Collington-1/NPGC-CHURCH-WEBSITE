@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Programs",
   description:
     "Explore NPGC's programs — Sunday Service, Holy Communion, Bible Study, Prayer Meetings, Night Vigil, Conferences, Retreats, and Special Programs.",
+  alternates: { canonical: "/programs" },
 };
 
 const query = `*[_type == "program"] | order(order asc){
