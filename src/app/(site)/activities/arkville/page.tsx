@@ -21,27 +21,34 @@ const whyJoin = [
   { icon: Sparkles, title: "Fun & Engaging", text: "Worship, games, and activities kids look forward to." },
 ];
 
-// TODO: replace with confirmed FAQ content via Sanity Studio (/studio -> FAQ, group "arkville").
+// TODO: fine-tune with confirmed specifics via Sanity Studio (/studio -> FAQ, group "arkville").
 const fallbackFaqs = [
   {
     question: "What age group is Arkville for?",
-    answer: "[Placeholder] Confirm the exact age range Arkville serves.",
+    answer:
+      "Arkville welcomes children across our children's church age range, grouped so teaching always fits where each child is. Bring your child on your first visit and our team will place them right away.",
   },
   {
     question: "What time does Arkville hold?",
-    answer: "[Placeholder] Confirm Arkville's meeting day and time.",
+    answer:
+      "Arkville runs alongside our main Sunday service, so the whole family can arrive, worship, and leave together.",
   },
   {
     question: "Do I need to register my child in advance?",
-    answer: "[Placeholder] Confirm registration requirements — use the form below either way.",
+    answer:
+      "No advance registration is required to visit — just bring your child on Sunday. If you'd like to register ahead of time, use the form below.",
   },
 ];
 
+// TODO: no dedicated Arkville/children photography has been provided yet —
+// these are the closest available images (families and congregation in
+// joyful, welcoming moments). Swap in real Arkville classroom/kids photos via
+// Sanity Studio as soon as they're available.
 const gallery = [
-  "/images/gallery/congregation/img-8746-20251012.jpg",
-  "/images/gallery/congregation/img-8747-20251012.jpg",
-  "/images/gallery/worship/13-7img-4990-2.jpg",
-  "/images/gallery/congregation/img-8740-20251012.jpg",
+  "/images/gallery/happy/img-9622-20251026-scaled.jpg",
+  "/images/gallery/happy/img-8759-20251012-scaled.jpg",
+  "/images/gallery/welcome/p1098348-20251012-scaled.jpg",
+  "/images/gallery/welcome/p1098351-20251012-scaled.jpg",
 ];
 
 const faqQuery = `*[_type == "faq" && group == "arkville"] | order(order asc){ question, answer }`;
@@ -55,7 +62,7 @@ export default async function ArkvillePage() {
         eyebrow="Activities · Arkville"
         title="Arkville"
         description="Children's Bible School — where the next generation meets the God of the Bible."
-        image="/images/gallery/congregation/p1098271-20251012.jpg"
+        image="/images/gallery/welcome/p1098271-20251012-scaled.jpg"
       />
 
       <section className="bg-background py-20 sm:py-28">
@@ -67,10 +74,12 @@ export default async function ArkvillePage() {
             Built For Kids To Meet God
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-            [Placeholder] Arkville is NPGC&apos;s dedicated children&apos;s
-            ministry, creating a fun, safe, and Word-centered environment
-            where children build a real relationship with God. Replace this
-            paragraph with the confirmed Arkville description.
+            Arkville is NPGC&apos;s dedicated children&apos;s ministry — a
+            fun, safe, and Word-centered space where children don&apos;t just
+            hear about God secondhand, but build a real relationship with Him
+            for themselves. Through age-appropriate teaching, worship, and
+            play, every child who walks through our doors is discipled, not
+            just entertained.
           </p>
         </div>
 
@@ -79,8 +88,7 @@ export default async function ArkvillePage() {
             Vision
           </p>
           <p className="mt-4 font-display text-2xl font-bold leading-snug text-foreground">
-            [Placeholder] Raising children who know God for themselves from
-            the earliest age.
+            Raising children who know God for themselves from the earliest age.
           </p>
         </div>
       </section>

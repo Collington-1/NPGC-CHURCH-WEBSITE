@@ -1,8 +1,9 @@
-// Scans the parent "NPGC WEBSITE" folder for photos dropped there (root + any
-// subfolders, e.g. "Photos", or new folders the client adds later), copies
-// them into public/images/gallery/<category>/, and regenerates the gallery
-// manifest consumed by the site. Re-run any time new images are added:
+// Moves photos from the client-organized "ALL PHOTOS TYPES" folder (dropped
+// directly into public/) into public/images/gallery/<category>/, using the
+// client's own folder names as the source of truth for categorization, then
+// regenerates the gallery manifest consumed by the site.
 //
+// Re-run any time new images are added to "ALL PHOTOS TYPES":
 //   node scripts/sync-images.mjs
 //
 import fs from "node:fs";
@@ -11,41 +12,27 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
-const sourceRoot = path.resolve(repoRoot, ".."); // "NPGC WEBSITE" folder
+const sourceRoot = path.join(repoRoot, "public", "ALL PHOTOS TYPES");
 const destRoot = path.join(repoRoot, "public", "images", "gallery");
-const brandDestDir = path.join(repoRoot, "public", "brand");
 
 const IMAGE_EXT = new Set([".jpg", ".jpeg", ".png", ".webp"]);
-const SKIP_DIRS = new Set(["NPGC-CLAUDE", "node_modules", ".git"]);
 
-/** @type {{ test: RegExp; category: string }[]} */
-const rules = [
-  { test: /^IMG-20250417-WA00/i, category: "special-events" },
-  { test: /^13-7(IMG|P108)/i, category: "worship" },
-  { test: /^2109IMG/i, category: "prayer" },
-  { test: /^IMG_6\d{3}\./i, category: "pastor" },
-  { test: /^IMG_8\d{3}-20251005/i, category: "pastor" },
-  { test: /^IMG_8\d{3}-20251012/i, category: "congregation" },
-  { test: /^IMG_9\d{3}\./i, category: "worship" },
-  { test: /^P1098\d{3}-20251012/i, category: "congregation" },
-];
-
-function categoryFor(filename) {
-  const rule = rules.find((r) => r.test.test(filename));
-  return rule?.category ?? "congregation";
-}
-
-function walk(dir, files = []) {
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (entry.isDirectory()) {
-      if (SKIP_DIRS.has(entry.name)) continue;
-      walk(path.join(dir, entry.name), files);
-    } else {
-      files.push(path.join(dir, entry.name));
-    }
-  }
-  return files;
-}
+// Client's folder name -> our gallery category slug. Folders not listed here
+// are skipped (with a warning) rather than guessed at.
+const FOLDER_TO_CATEGORY = {
+  Entrances: "welcome",
+  Welcome: "welcome",
+  Happy: "happy",
+  "Laying of hands by Pastor": "prayer",
+  "Listening to Ministration": "ministration",
+  Pastor: "pastor",
+  "Pastor's wife": "pastors-wife",
+  Prayer: "prayer",
+  Programs: "programs",
+  Testimonies: "testimonies",
+  Worship: "worship",
+  "Beyond Borders": "special-events",
+};
 
 function slugify(basename) {
   return basename
@@ -55,65 +42,99 @@ function slugify(basename) {
     .replace(/^-+|-+$/g, "");
 }
 
-const allFiles = walk(sourceRoot);
-const seenBasenames = new Set();
-/** @type {Record<string, {src: string, category: string}[]>} */
-const byCategory = {};
+function collectImages(dir) {
+  const files = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...collectImages(full));
+    } else if (IMAGE_EXT.has(path.extname(entry.name).toLowerCase())) {
+      files.push(full);
+    }
+  }
+  return files;
+}
+
+if (!fs.existsSync(sourceRoot)) {
+  console.log(`No "ALL PHOTOS TYPES" folder found at ${sourceRoot} — nothing to sync.`);
+  process.exit(0);
+}
 
 fs.mkdirSync(destRoot, { recursive: true });
-fs.mkdirSync(brandDestDir, { recursive: true });
 
-// Logo: prefer the larger of the two known logo files.
-const logoCandidates = allFiles.filter((f) => /logo/i.test(path.basename(f)));
-if (logoCandidates.length) {
-  const best = logoCandidates
-    .map((f) => ({ f, size: fs.statSync(f).size }))
-    .sort((a, b) => b.size - a.size)[0].f;
-  fs.copyFileSync(best, path.join(brandDestDir, "npgc-logo.png"));
-  console.log(`Logo -> public/brand/npgc-logo.png (from ${path.basename(best)})`);
+/** @type {Record<string, {src: string, category: string}[]>} */
+const byCategory = {};
+let moved = 0;
+const seenDestNames = new Set();
+
+for (const topEntry of fs.readdirSync(sourceRoot, { withFileTypes: true })) {
+  if (!topEntry.isDirectory()) continue;
+  const topDir = path.join(sourceRoot, topEntry.name);
+
+  // "Events/Beyond Borders" is nested one level deeper than the rest.
+  const subDirs = fs.readdirSync(topDir, { withFileTypes: true }).filter((e) => e.isDirectory());
+  const foldersToScan = subDirs.length
+    ? subDirs.map((d) => ({ name: d.name, dir: path.join(topDir, d.name) }))
+    : [{ name: topEntry.name, dir: topDir }];
+
+  for (const { name, dir } of foldersToScan) {
+    const category = FOLDER_TO_CATEGORY[name];
+    if (!category) {
+      console.warn(`Skipping unmapped folder: ${name}`);
+      continue;
+    }
+    const destDir = path.join(destRoot, category);
+    fs.mkdirSync(destDir, { recursive: true });
+
+    for (const file of collectImages(dir)) {
+      const ext = path.extname(file).toLowerCase();
+      let destName = `${slugify(path.basename(file))}${ext}`;
+      let destPath = path.join(destDir, destName);
+      const key = `${category}/${destName}`;
+      if (seenDestNames.has(key)) {
+        destName = `${slugify(path.basename(file))}-${moved}${ext}`;
+        destPath = path.join(destDir, destName);
+      }
+      seenDestNames.add(`${category}/${destName}`);
+
+      fs.copyFileSync(file, destPath);
+      fs.rmSync(file);
+      moved++;
+
+      byCategory[category] ??= [];
+      byCategory[category].push({ src: `/images/gallery/${category}/${destName}`, category });
+    }
+  }
 }
 
-let copied = 0;
-for (const file of allFiles) {
-  const basename = path.basename(file);
-  const ext = path.extname(file).toLowerCase();
-  if (!IMAGE_EXT.has(ext)) continue;
-  if (/logo/i.test(basename) || /channels4_profile/i.test(basename)) continue;
-  // This specific file is a desktop browser-tabs screenshot that ended up in
-  // the photo folder by accident, not real church photography. Excluded by
-  // exact name (not a "WhatsApp Image ..." prefix rule) since that naming
-  // pattern is also used by genuine photos shared via WhatsApp.
-  if (basename === "WhatsApp Image 2025-11-03 at 12.22.53_b0067cf7.jpg") continue;
-  if (seenBasenames.has(basename)) continue; // dedupe (same photo saved in two folders)
-  seenBasenames.add(basename);
-
-  const category = categoryFor(basename);
-  const destDir = path.join(destRoot, category);
-  fs.mkdirSync(destDir, { recursive: true });
-  const destName = `${slugify(basename)}${ext}`;
-  fs.copyFileSync(file, path.join(destDir, destName));
-
-  byCategory[category] ??= [];
-  byCategory[category].push({ src: `/images/gallery/${category}/${destName}`, category });
-  copied++;
+// Clean up now-empty source tree.
+function removeEmptyDirs(dir) {
+  if (!fs.existsSync(dir)) return;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.isDirectory()) removeEmptyDirs(path.join(dir, entry.name));
+  }
+  if (fs.readdirSync(dir).length === 0) fs.rmdirSync(dir);
 }
+removeEmptyDirs(sourceRoot);
 
 const manifestPath = path.join(repoRoot, "src", "lib", "gallery-manifest.ts");
 const allImages = Object.values(byCategory).flat();
 
 const fileContents = `// AUTO-GENERATED by scripts/sync-images.mjs — do not edit by hand.
-// Re-run "node scripts/sync-images.mjs" after adding new photos to the
-// "NPGC WEBSITE" folder to refresh this file.
+// Re-run "node scripts/sync-images.mjs" after adding new photos to a
+// client-provided "ALL PHOTOS TYPES" folder inside public/ to refresh this file.
 
 export type GalleryCategory =
-  | "pastor"
-  | "worship"
+  | "welcome"
+  | "happy"
   | "prayer"
-  | "congregation"
-  | "special-events"
-  | "children"
-  | "choir"
-  | "outreach";
+  | "ministration"
+  | "pastor"
+  | "pastors-wife"
+  | "programs"
+  | "testimonies"
+  | "worship"
+  | "special-events";
 
 export type GalleryImage = {
   src: string;
@@ -129,7 +150,7 @@ export function imagesByCategory(category: GalleryCategory): GalleryImage[] {
 
 fs.writeFileSync(manifestPath, fileContents);
 
-console.log(`Copied ${copied} images across ${Object.keys(byCategory).length} categories.`);
+console.log(`Moved ${moved} images across ${Object.keys(byCategory).length} categories.`);
 for (const [cat, imgs] of Object.entries(byCategory)) {
   console.log(`  ${cat}: ${imgs.length}`);
 }

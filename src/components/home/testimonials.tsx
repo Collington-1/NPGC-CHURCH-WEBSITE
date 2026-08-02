@@ -23,7 +23,7 @@ const fallbackTestimonials: Testimonial[] = [
     role: "Demo testimonial — replace with a real one",
     quote:
       "Since joining NPGC, I've experienced real growth in my walk with God. (Demo text — replace with a genuine member testimonial in Sanity Studio.)",
-    photo: "/images/gallery/congregation/img-8746-20251012.jpg",
+    photo: "/images/gallery/testimonies/13-7img-5539-2-scaled.jpg",
   },
   {
     _id: "2",
@@ -31,7 +31,7 @@ const fallbackTestimonials: Testimonial[] = [
     role: "Demo testimonial — replace with a real one",
     quote:
       "The teaching here is practical and Spirit-led. (Demo text — replace with a genuine member testimonial in Sanity Studio.)",
-    photo: "/images/gallery/congregation/img-8747-20251012.jpg",
+    photo: "/images/gallery/testimonies/img-0710-20260726.jpg",
   },
   {
     _id: "3",
@@ -39,7 +39,7 @@ const fallbackTestimonials: Testimonial[] = [
     role: "Demo testimonial — replace with a real one",
     quote:
       "I found a family here, not just a church service. (Demo text — replace with a genuine member testimonial in Sanity Studio.)",
-    photo: "/images/gallery/congregation/img-8746-20251012.jpg",
+    photo: "/images/gallery/testimonies/2109img-7350-scaled.jpg",
   },
 ];
 

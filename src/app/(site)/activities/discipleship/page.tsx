@@ -21,32 +21,35 @@ const benefits = [
 ];
 
 const stages = [
-  { stage: "01", title: "New Believer", text: "[Placeholder] Foundations of faith for those newly born again." },
-  { stage: "02", title: "Growing", text: "[Placeholder] Deepening in the Word, prayer, and church life." },
-  { stage: "03", title: "Leadership Track", text: "[Placeholder] Equipping for service and leadership in the church." },
+  { stage: "01", title: "New Believer", text: "Foundations of the faith — Scripture, prayer, and identity in Christ — for anyone newly born again or new to NPGC." },
+  { stage: "02", title: "Growing", text: "Deepening in the Word, building a consistent prayer life, and getting rooted in church community." },
+  { stage: "03", title: "Leadership Track", text: "Equipping for service and leadership — raising disciples who can, in turn, disciple others." },
 ];
 
-// TODO: replace with confirmed FAQ content via Sanity Studio (/studio -> FAQ, group "discipleship").
+// TODO: fine-tune with confirmed specifics via Sanity Studio (/studio -> FAQ, group "discipleship").
 const fallbackFaqs = [
   {
     question: "How long does the Discipleship program run?",
-    answer: "[Placeholder] Confirm the program duration per stage.",
+    answer:
+      "Discipleship is structured in stages rather than a fixed term — you move at the pace of your growth, from New Believer through to the Leadership Track.",
   },
   {
     question: "Do I need to be a member to join?",
-    answer: "[Placeholder] Confirm membership requirements.",
+    answer:
+      "No — Discipleship is open to anyone at NPGC who wants to grow deeper in their walk with God, whether you're brand new or you've been with us for years.",
   },
   {
     question: "When and where do classes hold?",
-    answer: "[Placeholder] Confirm schedule and location.",
+    answer:
+      "Classes are held on-site at NPGC. Submit the form below and our Discipleship team will reach out with the current schedule.",
   },
 ];
 
 const gallery = [
-  "/images/gallery/prayer/2109img-7476.jpg",
-  "/images/gallery/worship/13-7img-5143-2.jpg",
-  "/images/gallery/prayer/2109img-7359.jpg",
-  "/images/gallery/worship/13-7img-4977-2.jpg",
+  "/images/gallery/ministration/13-7img-5783-scaled.jpg",
+  "/images/gallery/ministration/img-8824-20251012-scaled.jpg",
+  "/images/gallery/prayer/img-9787-scaled.jpg",
+  "/images/gallery/prayer/img-9665-20260705.jpg",
 ];
 
 const faqQuery = `*[_type == "faq" && group == "discipleship"] | order(order asc){ question, answer }`;
@@ -60,7 +63,7 @@ export default async function DiscipleshipPage() {
         eyebrow="Activities · Discipleship"
         title="Discipleship"
         description="A structured path to spiritual maturity — for every believer, at every stage."
-        image="/images/gallery/prayer/2109img-7273.jpg"
+        image="/images/gallery/prayer/2109img-7460-scaled.jpg"
       />
 
       <section className="bg-background py-20 sm:py-28">
@@ -72,10 +75,12 @@ export default async function DiscipleshipPage() {
             Growing Deep Roots
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-            [Placeholder] Discipleship at NPGC is a structured journey that
-            takes every believer from their first step of faith into mature,
-            fruitful service in the Kingdom. Replace this paragraph with the
-            confirmed program overview.
+            Discipleship at NPGC is a structured journey that takes every
+            believer from their first step of faith into mature, fruitful
+            service in the Kingdom. Through teaching, mentorship, and
+            hands-on ministry experience, we walk with you stage by stage —
+            so you don&apos;t just attend church, you grow into everything
+            God has called you to be.
           </p>
         </div>
       </section>

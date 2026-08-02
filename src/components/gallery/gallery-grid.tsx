@@ -10,16 +10,16 @@ import type { GalleryImage } from "@/lib/gallery-manifest";
 
 const categoryLabels: Record<string, string> = {
   all: "All",
-  "sunday-service": "Sunday Service",
-  worship: "Worship",
-  praise: "Praise",
-  choir: "Choir",
-  pastor: "Pastor",
-  children: "Children",
-  outreach: "Outreach",
+  welcome: "Welcome",
+  happy: "Celebration",
   prayer: "Prayer",
+  ministration: "Ministration",
+  pastor: "Pastor",
+  "pastors-wife": "Pastor's Wife",
+  programs: "Programs",
+  testimonies: "Testimonies",
+  worship: "Worship",
   "special-events": "Special Events",
-  congregation: "Congregation",
 };
 
 export function GalleryGrid({ images }: { images: GalleryImage[] }) {

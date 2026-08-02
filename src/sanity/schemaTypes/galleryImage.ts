@@ -1,14 +1,15 @@
 import { defineField, defineType } from "sanity";
 
 export const galleryCategories = [
-  { title: "Sunday Service", value: "sunday-service" },
-  { title: "Worship", value: "worship" },
-  { title: "Praise", value: "praise" },
-  { title: "Choir", value: "choir" },
-  { title: "Pastor", value: "pastor" },
-  { title: "Children", value: "children" },
-  { title: "Outreach", value: "outreach" },
+  { title: "Welcome", value: "welcome" },
+  { title: "Celebration", value: "happy" },
   { title: "Prayer", value: "prayer" },
+  { title: "Ministration", value: "ministration" },
+  { title: "Pastor", value: "pastor" },
+  { title: "Pastor's Wife", value: "pastors-wife" },
+  { title: "Programs", value: "programs" },
+  { title: "Testimonies", value: "testimonies" },
+  { title: "Worship", value: "worship" },
   { title: "Special Events", value: "special-events" },
 ];
 
