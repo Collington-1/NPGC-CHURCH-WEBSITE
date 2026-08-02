@@ -9,7 +9,9 @@ as the headless CMS for sermons, programs, gallery, testimonials, and staff.
 - **Tailwind CSS v4** + **shadcn/ui** (`radix-nova` style) for the component layer
 - **Framer Motion** for scroll/reveal/hero animation, **GSAP** available for anything Framer can't do cleanly
 - **React Hook Form + Zod** for every form (contact, giving confirmation, Arkville & Discipleship registration, newsletter)
-- **Sanity** (embedded Studio at `/studio`) as the CMS — sermons, programs, gallery images, testimonials, leadership, FAQs, site settings all live there
+- **Sanity** (embedded Studio at `/studio`) as the CMS — sermons, programs, gallery images, testimonials, leadership, FAQs, site settings, upcoming programs, and a full media library (videos, audio, books, documents, YouTube Shorts) all live there
+- **Flutterwave** for multi-currency (NGN/USD/GBP/EUR) card giving
+- Floating "Live" button (`src/components/shared/live-stream-button.tsx`) that lights up automatically during the weekly YouTube livestream schedule (`src/lib/live-schedule.ts`), plus a manual override in Studio for unscheduled streams
 - Deployment target: **Netlify** (primary), Vercel-compatible
 
 ## Getting started
@@ -67,38 +69,46 @@ debit/credit cards in Naira, Dollars, Pounds, and Euros on the Give page:
 
 ## Adding more photos
 
-Real church photography lives one level up, in the `NPGC WEBSITE` folder
-(sibling of this project), not inside the repo. To pull new photos in:
+The client organizes new photos into category-named folders and drops the
+whole thing directly into `public/ALL PHOTOS TYPES/<Category>/` (e.g.
+`public/ALL PHOTOS TYPES/Arkville/photo1.jpg`). To pull them into the site:
 
-1. Drop new images anywhere inside `NPGC WEBSITE/` (a new subfolder is fine).
+1. Add the new category to `FOLDER_TO_CATEGORY` in `scripts/sync-images.mjs`
+   (maps the client's folder name to a gallery category slug) if it's a
+   brand-new category — existing categories (Welcome, Prayer, Ministration,
+   Pastor, Pastor's Wife, Programs, Testimonies, Worship, Happy, and the
+   nested Events/Beyond Borders → Special Events) already work.
 2. Run:
    ```bash
    node scripts/sync-images.mjs
    ```
-   This copies every photo into `public/images/gallery/<category>/`, dedupes
-   repeats, and regenerates `src/lib/gallery-manifest.ts` automatically.
-3. New filename patterns that don't match an existing rule fall back to the
-   `congregation` category — open `scripts/sync-images.mjs` and add a rule, or
-   just move the file into the right `public/images/gallery/<category>/` folder
-   and re-run.
+   This **moves** every photo into `public/images/gallery/<category>/`,
+   deletes the now-empty source folders, and regenerates
+   `src/lib/gallery-manifest.ts` automatically.
+3. Update whichever page/component should use the new photos (e.g. swap the
+   Arkville page's `gallery` array once real Arkville/children's photos
+   arrive — see the TODO comment in
+   `src/app/(site)/activities/arkville/page.tsx`).
 
-The logo is auto-detected from any filename containing "logo" (picks the
-larger of the two currently in the source folder) and copied to
-`public/brand/npgc-logo.png`.
+The logo already lives at `public/brand/npgc-logo.png` (a one-time manual
+copy) — the sync script doesn't touch it.
 
 ## Content still needed from the client
 
-- [x] Phone / WhatsApp, Facebook, Instagram, service times, bank details — done
+- [x] Phone / WhatsApp, Facebook, Instagram, YouTube, service times, bank details — done
+- [x] Founding year (2020) and Pastor Nonye Eforuoku added to Leadership — done
 - [ ] Confirmed public contact email (still a placeholder in `src/lib/site-config.ts`)
-- [ ] Real YouTube channel URL
-- [ ] Full church history, Vision, Mission, Core Values, Statement of Faith (`aboutContent` in Studio)
-- [ ] Leadership team bios + photos beyond Pastor Victor Eforuoku
+- [ ] Confirmed real domain name (`siteConfig.url` is a placeholder — affects sitemap/canonical/share previews)
+- [ ] Milestone years between 2020 (founding) and 2026 for the About page timeline
+- [ ] Dedicated Arkville/children's ministry photos (client said these are coming — see the TODO in `src/app/(site)/activities/arkville/page.tsx`)
+- [ ] Full church history detail, plus any corrections to the drafted Vision/Mission/Core Values (`aboutContent` in Studio)
 - [ ] Optional: a QR code image for the bank/giving accounts
 - [ ] Real testimonials — currently demo quotes (clearly marked in the UI) paired
       with real photos of members holding a microphone; swap the quotes for
       genuine ones in Sanity Studio whenever they're ready
 - [ ] Arkville & Discipleship FAQ content
 - [ ] Flutterwave account (see "Setting up card giving" above) to activate card payments
+- [ ] YouTube Shorts URLs (paste into Studio → Media Library → YouTube Short to populate the home page grid)
 
 ## Deployment
 
