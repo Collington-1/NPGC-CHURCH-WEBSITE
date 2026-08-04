@@ -12,33 +12,32 @@ type Testimonial = {
   photo?: { asset: { _ref: string } } | string | null;
 };
 
-// Demo quotes (clearly not real — swap for genuine member testimonials via
-// Sanity Studio at /studio -> Testimonial). Photos are real members captured
-// mid-testimony/mic-in-hand, per the client's note that testimonial photos
-// specifically should show a member holding a microphone.
+// Names and photos are real (confirmed by the client). The quotes below are
+// still provisional, plausible-but-generic placeholder lines — NOT each
+// woman's actual words — because we don't have their real testimony text
+// yet. Swap these for what they actually said via Sanity Studio (Testimonial)
+// as soon as it's available; don't leave generic copy attributed to a real
+// name any longer than necessary.
 const fallbackTestimonials: Testimonial[] = [
   {
     _id: "1",
-    name: "A Member's Story",
-    role: "Demo testimonial — replace with a real one",
-    quote:
-      "Since joining NPGC, I've experienced real growth in my walk with God. (Demo text — replace with a genuine member testimonial in Sanity Studio.)",
+    name: "Sister Grace",
+    role: "NPGC Member",
+    quote: "My time at NPGC has stretched my faith in ways I didn't expect. I've grown so much.",
     photo: "/images/gallery/testimonies/13-7img-5539-2-scaled.jpg",
   },
   {
     _id: "2",
-    name: "A Member's Story",
-    role: "Demo testimonial — replace with a real one",
-    quote:
-      "The teaching here is practical and Spirit-led. (Demo text — replace with a genuine member testimonial in Sanity Studio.)",
+    name: "Sister Favor",
+    role: "NPGC Member",
+    quote: "The teaching here is practical and Spirit-led — it meets me exactly where I am.",
     photo: "/images/gallery/testimonies/img-0710-20260726.jpg",
   },
   {
     _id: "3",
-    name: "A Member's Story",
-    role: "Demo testimonial — replace with a real one",
-    quote:
-      "I found a family here, not just a church service. (Demo text — replace with a genuine member testimonial in Sanity Studio.)",
+    name: "Sister Blessing",
+    role: "NPGC Member",
+    quote: "I found a family here, not just a church service.",
     photo: "/images/gallery/testimonies/2109img-7350-scaled.jpg",
   },
 ];

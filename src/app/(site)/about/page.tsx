@@ -166,7 +166,7 @@ export default async function AboutPage() {
             Leadership
           </p>
           <h2 className="mt-4 text-center font-display text-4xl font-bold text-foreground">
-            Meet the Team
+            Meet the Leaders
           </h2>
           <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {staff.map((member) => (
@@ -190,7 +190,7 @@ export default async function AboutPage() {
                   <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-gold-400">
                     {member.role}
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
                     {member.bio}
                   </p>
                 </div>

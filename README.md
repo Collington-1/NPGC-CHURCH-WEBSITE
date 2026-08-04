@@ -115,18 +115,21 @@ copy) — the sync script doesn't touch it.
 
 - [x] Phone / WhatsApp, Facebook, Instagram, YouTube, service times, bank details — done
 - [x] Founding year (2020) and Pastor Nonye Eforuoku added to Leadership — done
-- [ ] Confirmed public contact email (still a placeholder in `src/lib/site-config.ts`)
-- [ ] Confirmed real domain name (`siteConfig.url` is a placeholder — affects sitemap/canonical/share previews)
+- [x] Public contact email confirmed (thenewparadigmglobalchurch@gmail.com) — done
+- [x] Real domain confirmed (thenpgc.org) — done, `siteConfig.url` updated
+- [x] Full pastor bio + a standing/podium photo swapped in for the About page — done
+- [x] Core Values confirmed as Love, Character, Excellence, Anointing — done
+- [x] Programs confirmed as just Beyond Borders + Kingdom Business Summit (Night Vigil and the other generic program cards removed) — done
 - [ ] Milestone years between 2020 (founding) and 2026 for the About page timeline
 - [ ] Dedicated Arkville/children's ministry photos (client said these are coming — see the TODO in `src/app/(site)/activities/arkville/page.tsx`)
-- [ ] Full church history detail, plus any corrections to the drafted Vision/Mission/Core Values (`aboutContent` in Studio)
+- [ ] Dedicated Dinner Night photos (client said these are coming — see the TODO in `src/app/(site)/activities/dinner-night/page.tsx`)
+- [ ] Full church history detail, plus any corrections to the drafted Vision/Mission (`aboutContent` in Studio)
 - [ ] Optional: a QR code image for the bank/giving accounts
-- [ ] Real testimonials — currently demo quotes (clearly marked in the UI) paired
-      with real photos of members holding a microphone; swap the quotes for
-      genuine ones in Sanity Studio whenever they're ready
+- [ ] Real testimonial quotes for Sister Grace, Sister Favor, and Sister Blessing — names and photos are real and confirmed, but the quote text in `src/components/home/testimonials.tsx` is still provisional placeholder wording, not their actual words
 - [ ] Arkville & Discipleship FAQ content
 - [ ] Flutterwave account (see "Setting up card giving" above) to activate card payments
 - [ ] YouTube Shorts URLs (paste into Studio → Media Library → YouTube Short to populate the home page grid)
+- [ ] A separate, dedicated Sanity project for NPGC (not the client's existing "Perfectcareersng" project) — Project ID + Editor token needed to wire up the CMS/forms
 
 ## Deployment
 

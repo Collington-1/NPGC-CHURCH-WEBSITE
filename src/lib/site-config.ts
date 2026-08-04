@@ -2,10 +2,7 @@ export const siteConfig = {
   name: "The New Paradigm Global Church",
   shortName: "NPGC",
   tagline: "Your place for a shift.",
-  // TODO: replace with the real Namecheap domain once confirmed — used for
-  // sitemap.xml, canonical URLs, and Open Graph/Twitter share previews.
-  url: "https://npgc.org",
-  // TODO: confirm a public contact email with the client.
+  url: "https://thenpgc.org",
   address: {
     line1: "Plot 336A Peter Odili Road, Trans-Amadi",
     line2: "God'swill Towers, beside Livichun Supermarket",
@@ -13,7 +10,7 @@ export const siteConfig = {
   },
   phone: "+234 803 626 6003",
   whatsapp: "+2348036266003",
-  email: "info@npgc.org",
+  email: "thenewparadigmglobalchurch@gmail.com",
   mapsUrl: "https://maps.google.com/?q=Plot+336A+Peter+Odili+Road+Trans-Amadi+Port+Harcourt",
   social: {
     facebook: "https://www.facebook.com/thenpgc?mibextid=ZbWKwL",

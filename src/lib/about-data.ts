@@ -51,8 +51,8 @@ export const fallbackStaff: StaffMemberFallback[] = [
     _id: "pastor-victor",
     name: "Pastor Victor Eforuoku",
     role: "Lead Pastor",
-    bio: "Pastor Victor Eforuoku is the Founder and Lead Pastor of The New Paradigm Global Church (NPGC), a prophetic teaching ministry dedicated to raising influential people for global impact. He oversees a vibrant community of believers focused on spiritual growth, prayer, and the transformation of lives by the Word of God.",
-    photo: "/images/gallery/pastor/img-6415-scaled.jpg",
+    bio: "Victor Eforuoku is the visionary Lead Pastor of The New Paradigm Global Church, a dynamic and growing ministry with a powerful presence in Port Harcourt, Rivers State, Nigeria. He is a distinguished man of God, a sought-after teacher, and a spiritual father to many, whose life and ministry continue to leave an indelible mark on this generation.\n\nThe major driving force in his life was born from a profound and transformative encounter with the Holy Spirit many years ago. In that moment, the foundational truth of the Christian faith was etched into his spirit: that the basis for a truly successful and impactful Christian life is absolute and total reliance on the Spirit of God. This non-negotiable truth is the bedrock upon which he has built everything he does. It fuels his unwavering faith, knowing that God can be trusted beyond all measures and that He has never, and will never, fail.\n\nPastor Victor is more than a preacher; he is a trailblazer and a paradigm-shifter, called to awaken the Church to a deeper dimension of spiritual reality. His life is a testament to the faithfulness of God, and his ministry is marked by a rare depth of wisdom, clarity of insight, and a tangible presence of the Holy Spirit. With the heart of a true shepherd and the mantle of a prophet to this age, he continues to guide countless lives into their God-given purpose, proving that when a man fully depends on the Spirit, nothing is impossible.",
+    photo: "/images/gallery/pastor/img-4663-20260118-scaled.jpg",
     isLeadPastor: true,
   },
   {

@@ -9,7 +9,7 @@ import { PageHero } from "@/components/layout/page-hero";
 export const metadata: Metadata = {
   title: "Programs",
   description:
-    "Explore NPGC's programs — Sunday Service, Holy Communion, Bible Study, Prayer Meetings, Night Vigil, Conferences, Retreats, and Special Programs.",
+    "Explore NPGC's programs — Beyond Borders and Kingdom Business Summit.",
   alternates: { canonical: "/programs" },
 };
 
@@ -29,15 +29,15 @@ export default async function ProgramsPage() {
       <PageHero
         eyebrow="Get Involved"
         title="Our Programs"
-        description="From Sunday gatherings to seasons of prayer and impact — find your rhythm with us."
+        description="Signature gatherings designed to shift, equip, and impact — beyond a regular Sunday."
         image="/images/gallery/worship/13-7img-5186-2.jpg"
       />
 
       <UpcomingProgramBanner />
 
       <section className="bg-background py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto max-w-3xl px-6">
+          <div className="grid gap-6 sm:grid-cols-2">
             {programs.map((program) => (
               <ProgramCard key={program._id} program={program} />
             ))}
