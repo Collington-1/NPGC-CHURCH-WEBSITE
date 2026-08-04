@@ -8,7 +8,7 @@ import { PageHero } from "@/components/layout/page-hero";
 export const metadata: Metadata = {
   title: "Activities",
   description:
-    "Explore Arkville, our children's Bible school, and Discipleship, our growth track for believers at NPGC.",
+    "Explore Arkville, our children's Bible school, Discipleship, our growth track for believers, and Dinner Night, an evening of fellowship at NPGC.",
   alternates: { canonical: "/activities" },
 };
 
@@ -29,6 +29,15 @@ const activities = [
       "A structured path to help every believer grow deep roots and bear lasting fruit.",
     image: "/images/gallery/prayer/2109img-7469.jpg",
   },
+  {
+    href: "/activities/dinner-night",
+    title: "Dinner Night",
+    tagline: "An evening of fellowship together",
+    description:
+      "Good food and good company — a relaxed evening for the NPGC family to connect outside of service.",
+    // TODO: placeholder photo — client is sending dedicated Dinner Night photos.
+    image: "/images/gallery/happy/img-8759-20251012-scaled.jpg",
+  },
 ];
 
 export default function ActivitiesPage() {
@@ -37,12 +46,12 @@ export default function ActivitiesPage() {
       <PageHero
         eyebrow="Activities"
         title="Grow With Us"
-        description="Dedicated tracks for children and for believers pursuing spiritual growth."
+        description="Dedicated tracks for children, growing believers, and fellowship together."
         image="/images/gallery/worship/13-7img-5187-2.jpg"
       />
 
       <section className="bg-background py-20 sm:py-28">
-        <div className="mx-auto grid max-w-6xl gap-8 px-6 sm:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl gap-8 px-6 sm:grid-cols-2 lg:grid-cols-3">
           {activities.map((activity) => (
             <Link
               key={activity.href}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Flame, BookOpen, HandHeart, Users, Rocket } from "lucide-react";
+import { Heart, ShieldCheck, Award, Flame } from "lucide-react";
 
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
 };
 
-const valueIcons = [Flame, HandHeart, Rocket, Users, BookOpen];
+const valueIcons = [Heart, ShieldCheck, Award, Flame];
 
 const contentQuery = `*[_type == "aboutContent"][0]`;
 const staffQuery = `*[_type == "staffMember"] | order(order asc){ _id, name, role, bio, "photo": photo.asset->url, isLeadPastor }`;
@@ -102,7 +102,7 @@ export default async function AboutPage() {
           <h2 className="mt-4 text-center font-display text-4xl font-bold text-foreground">
             Core Values
           </h2>
-          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {content.coreValues.map((value, i) => {
               const Icon = valueIcons[i % valueIcons.length];
               return (

@@ -485,7 +485,7 @@ export const galleryImages: GalleryImage[] = [
     "category": "pastors-wife"
   },
   {
-    "src": "/images/gallery/programs/486413983-18060219761044343-5792407174184104939-n.jpg",
+    "src": "/images/gallery/programs/beyond-borders.jpg",
     "category": "programs"
   },
   {
@@ -497,7 +497,7 @@ export const galleryImages: GalleryImage[] = [
     "category": "programs"
   },
   {
-    "src": "/images/gallery/programs/504464826-18066717989044343-2556750683563333193-n.jpg",
+    "src": "/images/gallery/programs/kingdom-business-summit.jpg",
     "category": "programs"
   },
   {

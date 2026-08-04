@@ -9,6 +9,7 @@ const routes = [
   "/activities",
   "/activities/arkville",
   "/activities/discipleship",
+  "/activities/dinner-night",
   "/gallery",
   "/give",
   "/resources",

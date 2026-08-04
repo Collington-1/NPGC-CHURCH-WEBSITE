@@ -18,19 +18,18 @@ export const fallbackAboutContent: AboutContent = {
   mission:
     "To build a Spirit-filled community where people encounter God through the Word and prayer, grow into spiritual maturity through discipleship, and are sent out to shine as lights wherever they are planted.",
   coreValues: [
-    { title: "The Word", description: "We hold Scripture as our final authority — every message, every value, and every decision is shaped by sound, uncompromised biblical teaching." },
-    { title: "Prayer", description: "We are a praying church before we are anything else. Prayer is how we posture ourselves for the breakthroughs we believe God for." },
+    { title: "Love", description: "We lead with genuine love for God and for one another — the truest mark of a disciple, and the foundation everything else at NPGC is built on." },
+    { title: "Character", description: "We pursue integrity and Christlike character in private and in public, believing who we become matters as much as what we accomplish." },
     { title: "Excellence", description: "From how we prepare a service to how we treat a first-time visitor, we do everything as unto the Lord — with care, order, and heart." },
-    { title: "Family", description: "NPGC is built to feel like family, not a crowd. Authentic community, honest discipleship, and real relationships are how we grow together." },
-    { title: "Impact", description: "We measure success by transformation — fully mature disciples and vibrant servants of the gospel, shining as lights in every sphere of life." },
+    { title: "Anointing", description: "We contend for the tangible presence and power of the Holy Spirit, believing His anointing is what makes ministry effective and lives truly transformed." },
   ],
   // Placed here at the client's explicit direction: NPGC's 2026 "Shining
   // Light" confession, used in place of a traditional doctrinal statement.
   statementOfFaith:
     "Christ is my Light and my Salvation.\nI blaze through darkness, systems, and limitations.\nI'm unstoppable!\nI'm well positioned; visible for the world to see.\nI cannot be ignored, overlooked, nor sidelined.\nEverywhere I enter, I shine, I glow, I radiate.\n2026, let there be LIGHT.\nHallelujah.",
   // TODO: only the founding year is confirmed so far — the years in between
-  // are still open. Add real milestone years via Sanity Studio (/studio ->
-  // About Page Content -> timeline) whenever the client shares them.
+  // are still open. Add real milestone years via Sanity Studio ("About Page
+  // Content" -> timeline) whenever the client shares them.
   timeline: [
     { year: "2020", event: "The New Paradigm Global Church was founded in Trans-Amadi, Port Harcourt, as a company of believers gathered around the Word, prayer, and the pursuit of God's presence, under the leadership of Pastor Victor Eforuoku." },
     { year: "Raising Disciples", event: "As the church grew, Arkville and Discipleship were established to walk believers — young and old — from their first encounter with God into lasting spiritual maturity." },

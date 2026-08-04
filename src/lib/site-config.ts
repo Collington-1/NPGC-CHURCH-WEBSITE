@@ -53,6 +53,11 @@ export const mainNav: NavLink[] = [
         href: "/activities/discipleship",
         description: "Growing into spiritual maturity",
       },
+      {
+        label: "Dinner Night",
+        href: "/activities/dinner-night",
+        description: "An evening of fellowship together",
+      },
     ],
   },
   { label: "Gallery", href: "/gallery" },
