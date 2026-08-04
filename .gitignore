@@ -37,6 +37,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# sanity studio local build output (from `npx sanity deploy`)
+/dist
+/.sanity
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

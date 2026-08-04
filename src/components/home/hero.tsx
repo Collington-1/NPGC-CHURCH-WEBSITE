@@ -51,7 +51,7 @@ export function Hero() {
       <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black via-black/50 to-black/20" />
       <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black/60 via-black/10 to-black/60" />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-28 pt-40 sm:pb-32">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-20 pt-24 sm:pb-28 sm:pt-32 lg:pb-32 lg:pt-40">
         <motion.div
           key={slide.heading}
           initial={{ opacity: 0, y: 24 }}
@@ -59,22 +59,22 @@ export function Hero() {
           transition={{ duration: 0.6 }}
           className="max-w-2xl"
         >
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-gold-400">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-gold-400 sm:mb-4 sm:text-sm sm:tracking-[0.3em]">
             The New Paradigm Global Church
           </p>
-          <h1 className="font-display text-5xl font-extrabold leading-[1.05] text-white sm:text-6xl lg:text-7xl">
+          <h1 className="font-display text-4xl font-extrabold leading-[1.1] text-white sm:text-6xl sm:leading-[1.05] lg:text-7xl">
             {slide.heading}
           </h1>
-          <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/80">
+          <p className="mt-4 max-w-lg text-base leading-relaxed text-white/80 sm:mt-6 sm:text-lg">
             {slide.subheading}
           </p>
         </motion.div>
 
-        <div className="mt-10 flex flex-wrap gap-4">
+        <div className="mt-8 flex flex-wrap gap-3 sm:mt-10 sm:gap-4">
           <Button
             asChild
             size="lg"
-            className="bg-gold-500 px-8 text-base font-semibold text-primary-foreground hover:bg-gold-400"
+            className="bg-gold-500 px-6 text-sm font-semibold text-primary-foreground hover:bg-gold-400 sm:px-8 sm:text-base"
           >
             <Link href="/about">Plan Your Visit</Link>
           </Button>
@@ -82,13 +82,13 @@ export function Hero() {
             asChild
             size="lg"
             variant="outline"
-            className="border-white/30 bg-white/5 px-8 text-base font-semibold text-white backdrop-blur-sm hover:bg-white/15 hover:text-white"
+            className="border-white/30 bg-white/5 px-6 text-sm font-semibold text-white backdrop-blur-sm hover:bg-white/15 hover:text-white sm:px-8 sm:text-base"
           >
             <Link href="/give">Give Online</Link>
           </Button>
         </div>
 
-        <div className="mt-16 flex gap-2">
+        <div className="mt-10 flex gap-2 sm:mt-16">
           {heroSlides.map((s, i) => (
             <button
               key={s.src}
