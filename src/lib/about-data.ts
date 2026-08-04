@@ -31,7 +31,7 @@ export const fallbackAboutContent: AboutContent = {
   // are still open. Add real milestone years via Sanity Studio ("About Page
   // Content" -> timeline) whenever the client shares them.
   timeline: [
-    { year: "2020", event: "The New Paradigm Global Church was founded in Trans-Amadi, Port Harcourt, as a company of believers gathered around the Word, prayer, and the pursuit of God's presence, under the leadership of Pastor Victor Eforuoku." },
+    { year: "2018", event: "The New Paradigm Global Church was founded in Trans-Amadi, Port Harcourt, as a company of believers gathered around the Word, prayer, and the pursuit of God's presence, under the leadership of Pastor Victor Eforuoku." },
     { year: "Raising Disciples", event: "As the church grew, Arkville and Discipleship were established to walk believers — young and old — from their first encounter with God into lasting spiritual maturity." },
     { year: "2026", event: "NPGC steps into a new season with the declaration \"2026, Let There Be Light\" — believing God for greater visibility, breakthrough, and shift in every sphere of life." },
   ],

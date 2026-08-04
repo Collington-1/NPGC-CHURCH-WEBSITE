@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Sparkles, ShieldCheck, Heart, BookOpen } from "lucide-react";
+import { Sparkles, ShieldCheck, Heart, BookOpen, Sun, PartyPopper, CalendarDays } from "lucide-react";
 
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { PageHero } from "@/components/layout/page-hero";
@@ -13,6 +13,24 @@ export const metadata: Metadata = {
     "Arkville is NPGC's children's Bible school — a safe, fun, and Word-filled space for kids to grow in God.",
   alternates: { canonical: "/activities/arkville" },
 };
+
+const arkvilleActivities = [
+  {
+    icon: Sun,
+    title: "Arkville Summer Camp",
+    text: "A holiday camp packed with Bible teaching, games, and unforgettable fun for kids on their long break.",
+  },
+  {
+    icon: PartyPopper,
+    title: "Arkville Easter Weekend",
+    text: "A special Easter celebration built just for kids — worship, drama, and joy centered on the resurrection.",
+  },
+  {
+    icon: CalendarDays,
+    title: "Weekend Bible Club",
+    text: "A midweek gathering where kids dig deeper into God's Word outside of Sunday, growing in Scripture together.",
+  },
+];
 
 const whyJoin = [
   { icon: BookOpen, title: "Bible-Centered", text: "Age-appropriate teaching rooted in Scripture." },
@@ -90,6 +108,31 @@ export default async function ArkvillePage() {
           <p className="mt-4 font-display text-2xl font-bold leading-snug text-foreground">
             Raising children who know God for themselves from the earliest age.
           </p>
+        </div>
+      </section>
+
+      <section className="bg-background pb-20 sm:pb-28">
+        <div className="mx-auto max-w-7xl px-6">
+          <p className="text-center text-sm font-semibold uppercase tracking-[0.3em] text-gold-500">
+            Arkville Activities
+          </p>
+          <h2 className="mt-4 text-center font-display text-3xl font-bold text-foreground">
+            Throughout The Year
+          </h2>
+          <div className="mt-14 grid gap-8 sm:grid-cols-3">
+            {arkvilleActivities.map(({ icon: Icon, title, text }) => (
+              <div
+                key={title}
+                className="rounded-2xl border border-border/60 bg-card px-8 py-10 text-center"
+              >
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gold-500/10">
+                  <Icon className="h-6 w-6 text-gold-500" />
+                </div>
+                <p className="mt-4 font-display text-lg font-bold text-foreground">{title}</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
