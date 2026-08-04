@@ -9,7 +9,7 @@ as the headless CMS for sermons, programs, gallery, testimonials, and staff.
 - **Tailwind CSS v4** + **shadcn/ui** (`radix-nova` style) for the component layer
 - **Framer Motion** for scroll/reveal/hero animation, **GSAP** available for anything Framer can't do cleanly
 - **React Hook Form + Zod** for every form (contact, giving confirmation, Arkville & Discipleship registration, newsletter)
-- **Sanity** (embedded Studio at `/studio`) as the CMS — sermons, programs, gallery images, testimonials, leadership, FAQs, site settings, upcoming programs, and a full media library (videos, audio, books, documents, YouTube Shorts) all live there
+- **Sanity** (Studio deployed separately at `<project>.sanity.studio` — see below) as the CMS — sermons, programs, gallery images, testimonials, leadership, FAQs, site settings, upcoming programs, and a full media library (videos, audio, books, documents, YouTube Shorts) all live there
 - **Flutterwave** for multi-currency (NGN/USD/GBP/EUR) card giving
 - Floating "Live" button (`src/components/shared/live-stream-button.tsx`) that lights up automatically during the weekly YouTube livestream schedule (`src/lib/live-schedule.ts`), plus a manual override in Studio for unscheduled streams
 - Deployment target: **Netlify** (primary), Vercel-compatible
@@ -21,13 +21,21 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The Sanity Studio lives at
-[http://localhost:3000/studio](http://localhost:3000/studio) once configured (below).
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Setting up Sanity (required before forms/CMS content work)
 
-The site runs without it (pages render with placeholder content), but forms and
-the Studio need a real project:
+The site runs without it (pages render with placeholder data), but forms and
+the admin dashboard need a real project.
+
+**Why the Studio isn't embedded in this app:** Sanity Studio 5.x requires
+React 19.2+'s new `useEffectEvent` hook internally, which Next.js 15's
+production webpack build can't currently resolve — every Sanity/next-sanity
+release that fixes this requires Next.js 16, which this project intentionally
+avoids (see git history / project notes). Rather than fight that, the Studio
+is deployed as Sanity's own free-hosted app — this is a common, more robust
+pattern anyway, since it decouples the admin dashboard's build from the
+website's build entirely.
 
 1. Create a free project at [sanity.io/manage](https://www.sanity.io/manage) →
    "Create new project". Note the **Project ID**.
@@ -38,16 +46,26 @@ the Studio need a real project:
    - `SANITY_API_WRITE_TOKEN` — sanity.io/manage → your project → API → Tokens →
      Add API token, **Editor** permission (needed so the contact/give/registration
      forms can write submissions)
-4. Restart `npm run dev`, then open `/studio` and log in with your Sanity account.
-   Populate: Site Settings, Hero Slides, Sermons, Programs, Leadership, Testimonials,
-   Gallery Images, FAQs, About Page Content.
+4. Add the same three variables in **Netlify → Site settings → Environment
+   variables** so the live site can read/write too.
+5. Deploy the admin dashboard itself (one-time, then re-run only when schema
+   fields change):
+   ```bash
+   npx sanity login
+   npx sanity deploy
+   ```
+   This asks for a Studio "hostname" (e.g. `npgc` → `npgc.sanity.studio`) and
+   publishes the dashboard there. Log in with your Sanity account and populate:
+   Site Settings, Hero Slides, Sermons, Programs, Leadership, Testimonials,
+   Gallery Images, FAQs, About Page Content, and everything under Media Library.
 
 Content types are defined in `src/sanity/schemaTypes/`.
 
-**In plain terms:** Sanity Studio (`/studio`) is what replaces the WordPress
-admin dashboard. There's no code involved — the media team logs in, picks
-"Gallery Image" or "Sermon," drags in a photo or pastes a YouTube link, and
-clicks Publish. It shows up on the live site right away.
+**In plain terms:** Sanity Studio (`https://<your-hostname>.sanity.studio`) is
+what replaces the WordPress admin dashboard. There's no code involved — the
+media team logs in, picks "Gallery Image" or "Sermon," drags in a photo or
+pastes a YouTube link, and clicks Publish. It shows up on the live site right
+away.
 
 ## Setting up card giving (Flutterwave)
 
@@ -147,15 +165,14 @@ way (point Namecheap DNS at Vercel instead).
 
 ```
 src/
-  app/(site)/        Public pages (home, about, programs, activities, gallery, give)
-  app/studio/         Embedded Sanity Studio
-  app/api/            Form submission routes (contact, give, arkville, discipleship, newsletter)
+  app/(site)/        Public pages (home, about, programs, activities, gallery, give, resources)
+  app/api/            Form submission routes (contact, give, arkville, discipleship, newsletter, event-registration)
   components/
     layout/           Header, footer, page hero
     home/             Homepage sections
     forms/            React Hook Form + Zod forms
     gallery/           Masonry gallery + lightbox
-  sanity/             Client, schema types, Studio structure
+  sanity/             Client, schema types, Studio structure (deployed separately — see "Setting up Sanity")
   lib/                Site config, validations, curated + gallery-manifest images
 scripts/
   sync-images.mjs     Photo import/categorization pipeline (see above)
